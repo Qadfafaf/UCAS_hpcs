@@ -67,10 +67,10 @@ void mpisollowtansys(float *a,int ar,int ac,float *b,int br,int bc,float *c,int 
         k=k+1;
     }
 }
-void mpisolaxb(MPI_Comm comm,int iam,int np)
+void mpisolaxb(float *x,MPI_Comm comm,int iam,int np)
 {
     float a[1000];
-    float x[1000];
+    //float x[1000];
     memset(a,0,1000);
     memset(x,0,1000);
     float at[1000];
@@ -152,8 +152,8 @@ void mpisolaxb(MPI_Comm comm,int iam,int np)
     {
         for(i=0;i<axr;i++)
         {
-            axe[i]+=b[i];
-            printf("%f\n",axe[i]);
+            x[i]=axe[i]+b[i];
+            printf("%f\n",x[i]);
         }
     }
 }

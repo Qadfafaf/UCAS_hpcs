@@ -20,7 +20,9 @@ int main(int argc, char *argv[])
 //solve ax = b np=2
 
 #ifdef paxb
-    mpisolaxb(comm,iam,np);
+    float x[1000];
+    memset(x,0,1000);
+    mpisolaxb(x,comm,iam,np);
 #endif
 //parallel solve triangular system np=3
 #ifdef p_sts
