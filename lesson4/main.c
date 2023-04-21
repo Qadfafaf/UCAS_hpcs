@@ -35,7 +35,43 @@ int main(int argc, char *argv[])
     tag = 1;
     MPI_Bcast(&ac, 1, MPI_INT, 0, comm);
     MPI_Bcast(&ar, 1, MPI_INT, 0, comm);
-#define p3
+#define a2a
+#ifdef a2a
+    int len = 9;
+    memset(a,0,1000);
+    memset(b,0,1000);
+    for(i=0;i<len;i++)
+    {
+        a[i] = iam*10 + i;
+    }
+    if(iam==1)
+    {
+        for(i=0;i<len;i++)
+        {
+            printf("%f ",a[i]);
+        }
+        printf("\n");
+    }
+    MPI_Alltoall(a, len/np, MPI_FLOAT, b, len/np, MPI_FLOAT, comm);
+    if(iam==1)
+    {
+        for(i=0;i<len;i++)
+        {
+            printf("%f ",b[i]);
+        }
+        printf("\n");
+    }
+    memset(b,0,1000);
+    mpi_all2all(a,b,len,iam,np,comm);
+    if(iam==1)
+    {
+        for(i=0;i<len;i++)
+        {
+            printf("%f ",b[i]);
+        }
+        printf("\n");
+    }
+#endif
 #ifdef p3
     MPI_Datatype lower_mat;
     MPI_Datatype ex_lower_mat;

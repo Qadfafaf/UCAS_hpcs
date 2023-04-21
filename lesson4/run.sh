@@ -1,4 +1,4 @@
 #!/bin/bash
 make clean
 make
-mpirun -np 2 ./main
+mpirun -np 3 ./main
